@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 204, y: -42}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &17906748
@@ -2415,6 +2415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 979599409}
+  - component: {fileID: 979599410}
   m_Layer: 5
   m_Name: TimerUI
   m_TagString: Untagged
@@ -2443,6 +2444,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &979599410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979599408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf50281fa62fad744bf07f600e5d3322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timerRotatableTransform: {fileID: 130898874}
+  _timerText: {fileID: 1952847422}
+  _rotationDuration: 60
+  _rotationEase: 1
 --- !u!1 &1148734224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,7 +2563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _orientationTransform: {fileID: 1206608636}
   _movementKey: 101
-  _movementSpeed: 5
+  _movementSpeed: 10
   _jumpKey: 32
   _jumpForce: 6
   _jumpCooldown: 0.5
@@ -2963,6 +2980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1388494181}
+  - component: {fileID: 1388494182}
   m_Layer: 5
   m_Name: PlayerHealtUI
   m_TagString: Untagged
@@ -2992,6 +3010,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1388494182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388494180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bcbc9aacbf8e8c40977db40db942c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealthImages:
+  - {fileID: 1902382543}
+  - {fileID: 740210839}
+  - {fileID: 2129700536}
+  _playerHealthySprite: {fileID: 21300000, guid: f52db0cc606b0d648b3868f7865417c6, type: 3}
+  _playerUnhealthySprite: {fileID: 21300000, guid: 132037a797cdc04469a6e251ee7e2172, type: 3}
+  _scaleDuration: 0.3
 --- !u!1 &1410271564
 GameObject:
   m_ObjectHideFlags: 0
@@ -3666,7 +3703,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1945057697}
-  - component: {fileID: 1945057696}
   m_Layer: 0
   m_Name: HealthManager
   m_TagString: Untagged
@@ -3674,19 +3710,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1945057696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1945057695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 434f2a15d2cec3e4dad73e58a94aa459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 3
 --- !u!4 &1945057697
 Transform:
   m_ObjectHideFlags: 0
