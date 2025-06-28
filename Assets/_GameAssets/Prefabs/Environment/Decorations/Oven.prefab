@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6242923368496550301}
   - component: {fileID: 5123871364821067361}
   - component: {fileID: 1339278299478592882}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OvenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 238428208613488876}
   - component: {fileID: 307979685516711071}
   - component: {fileID: 1473796357707108700}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Oven
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 89f7360f03906454697a9cd8b0c39315, type: 2}
+  - {fileID: 2100000, guid: 454d99fac69bd204baf18a19b3c52e9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

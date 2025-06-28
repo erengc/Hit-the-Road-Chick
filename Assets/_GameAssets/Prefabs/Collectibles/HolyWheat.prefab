@@ -69,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheatDesingSO: {fileID: 11400000, guid: c564d6560e1d52a4cbc76ce187b9a889, type: 2}
   _playerController: {fileID: 0}
+  _playerStateUI: {fileID: 0}
 --- !u!1 &6493279512095566606
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +120,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6493279512095566606}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
