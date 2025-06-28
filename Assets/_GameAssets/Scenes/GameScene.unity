@@ -6631,7 +6631,7 @@ GameObject:
   - component: {fileID: 1148734231}
   - component: {fileID: 1148734226}
   - component: {fileID: 1148734225}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6771,6 +6771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4e0a37778e3d242bdc7171f11e3236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerVisualTransform: {fileID: 7116489722872948013}
 --- !u!1 &1156765926
 GameObject:
   m_ObjectHideFlags: 0
@@ -9862,10 +9863,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 454d99fac69bd204baf18a19b3c52e9d, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9063792419980448605, guid: 69ef6ec9a0720ab4181a382ad028a657, type: 3}
+    - {fileID: 7703552157671473169, guid: 69ef6ec9a0720ab4181a382ad028a657, type: 3}
+    - {fileID: -5323125891530009861, guid: 69ef6ec9a0720ab4181a382ad028a657, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4101037024060004140, guid: 69ef6ec9a0720ab4181a382ad028a657, type: 3}
-      insertIndex: 74
+      insertIndex: 73
       addedObject: {fileID: 2141431576}
     - targetCorrespondingSourceObject: {fileID: 4101037024060004140, guid: 69ef6ec9a0720ab4181a382ad028a657, type: 3}
       insertIndex: -1
@@ -11676,6 +11680,7 @@ MonoBehaviour:
   _eggCounterUI: {fileID: 1609599086}
   _winLoseUI: {fileID: 744690438}
   _maxEggCount: 5
+  _delay: 0
 --- !u!4 &1771040095
 Transform:
   m_ObjectHideFlags: 0
@@ -12505,6 +12510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1945057697}
+  - component: {fileID: 1945057698}
   m_Layer: 0
   m_Name: HealthManager
   m_TagString: Untagged
@@ -12527,6 +12533,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1945057698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945057695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434f2a15d2cec3e4dad73e58a94aa459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealthUI: {fileID: 1388494182}
+  _maxHealth: 3
 --- !u!1 &1946872291 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2725572381756810667, guid: 69ef6ec9a0720ab4181a382ad028a657, type: 3}
