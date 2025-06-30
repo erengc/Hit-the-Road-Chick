@@ -19,6 +19,8 @@ public class CatController : MonoBehaviour
     [SerializeField] private int _maxDestinationAttemps = 10;
     [SerializeField] private float _chaseDistanceThreshold = 1.5f;
     [SerializeField] private float _chaseDistance = 2f;
+
+    private bool _hasCaughtPlayer = false;
     private bool _isWaiting;
     private bool _isChasing;
     private Vector3 _initialPosition;
@@ -58,7 +60,7 @@ public class CatController : MonoBehaviour
 
         if (Vector3.Distance(transform.position, _playerTransform.position) <= _chaseDistance && _isChasing)
         {
-            //IF CATCH
+            _hasCaughtPlayer = true;
             OnCatCatched?.Invoke();
             _catStateController.ChangeState(CatState.Attacking);
             _isChasing = false;

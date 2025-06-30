@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,6 +21,13 @@ public class LosePopup : MonoBehaviour
 
     private void OnTryAgainButtonClicked()
     {
+        DOTween.KillAll();
+        StartCoroutine(LoadSceneAfterDelay());
+    }
+
+    private System.Collections.IEnumerator LoadSceneAfterDelay()
+    {
+        yield return new WaitForEndOfFrame();
         SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE);
     }
 }

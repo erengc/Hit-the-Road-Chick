@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     private GameState _currentGameState;
 
+    private bool _hasGameOverTriggered = false;
+
     private int _currentEggCount;
 
     private void Awake()
@@ -69,6 +71,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator OnGameOver()
     {
+        if (_hasGameOverTriggered) yield break;
+        _hasGameOverTriggered = true;
+
         yield return new WaitForSeconds(_delay);
         ChangeGameState(GameState.GameOver);
         _winLoseUI.OnGameLose();
