@@ -1,5 +1,7 @@
 using DG.Tweening;
+using MaskTransitions;
 using TMPro;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,12 +19,18 @@ public class LosePopup : MonoBehaviour
         _timerText.text = _timerUI.GetFinalTime();
 
         _tryAgainButton.onClick.AddListener(OnTryAgainButtonClicked);
+
+        _mainMenuButton.onClick.AddListener(() =>
+        {
+            TransitionManager.Instance.LoadLevel(Consts.SceneNames.MENU_SCENE);
+        });
     }
 
     private void OnTryAgainButtonClicked()
     {
         DOTween.KillAll();
         StartCoroutine(LoadSceneAfterDelay());
+        TransitionManager.Instance.LoadLevel(Consts.SceneNames.GAME_SCENE);
     }
 
     private System.Collections.IEnumerator LoadSceneAfterDelay()
