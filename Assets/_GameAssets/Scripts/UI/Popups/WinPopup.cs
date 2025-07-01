@@ -1,3 +1,5 @@
+using System;
+using DG.Tweening;
 using MaskTransitions;
 using TMPro;
 using UnityEngine;
@@ -26,6 +28,14 @@ public class WinPopup : MonoBehaviour
 
     private void OnOneMoreButtonClicked()
     {
+        DOTween.KillAll();
+        StartCoroutine(LoadSceneAfterDelay());
         TransitionManager.Instance.LoadLevel(Consts.SceneNames.GAME_SCENE);
+    }
+
+    private System.Collections.IEnumerator LoadSceneAfterDelay()
+    {
+        yield return new WaitForEndOfFrame();
+        SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE);
     }
 }
