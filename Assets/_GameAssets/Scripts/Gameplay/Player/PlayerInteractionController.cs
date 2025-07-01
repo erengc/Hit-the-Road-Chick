@@ -33,6 +33,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (other.TryGetComponent<IDamageable>(out var damageable))
         {
             damageable.GiveDamage(_playerRigidbody, _playerVisualTransform);
+            CameraShake.Instance.ShakeCamera(0.9f, 0.5f);
         }
     }
 }

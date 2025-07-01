@@ -47,10 +47,15 @@ public class PlayerHealtUI : MonoBehaviour
 
     private void AnimateDamageSprite(Image activeImage, RectTransform activeImageTransform)
     {
+        if (activeImageTransform == null || !activeImageTransform.gameObject.activeInHierarchy) return;
+
         activeImageTransform.DOScale(0f, _scaleDuration).SetEase(Ease.InExpo).OnComplete(() =>
         {
-            activeImage.sprite = _playerUnhealthySprite;
-            activeImageTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutExpo);
+        if (activeImage == null || activeImageTransform == null) return;
+
+        activeImage.sprite = _playerUnhealthySprite;
+        activeImageTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutExpo);
         });
     }
+
 }

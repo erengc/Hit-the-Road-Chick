@@ -34,12 +34,19 @@ public class WinLoseUI : MonoBehaviour
         _winPopuptransform.DOScale(1.5f, _animationDuration).SetEase(Ease.OutExpo);
     }
 
-    public void OnGameLose()
-    {
-        _blackBackgroundObject.SetActive(true);
-        _losePopup.SetActive(true);
+public void OnGameLose()
+{
+    if (_blackBackgroundImage == null || _losePopuptransform == null) return;
 
-        _blackBackgroundImage.DOFade(0.8f, _animationDuration).SetEase(Ease.Linear);
-        _losePopuptransform.DOScale(1.5f, _animationDuration).SetEase(Ease.OutExpo);
-    }
+    // Buradaki koşulu kaldırıyoruz çünkü popup aktif değilse açacağız.
+    // if (!_losePopuptransform.gameObject.activeInHierarchy) return;
+
+    _blackBackgroundObject.SetActive(true);
+    _losePopup.SetActive(true);
+
+    _blackBackgroundImage.DOFade(0.8f, _animationDuration).SetEase(Ease.Linear);
+    _losePopuptransform.localScale = Vector3.zero;  // Başlangıç ölçeği 0 yap (varsa)
+    _losePopuptransform.DOScale(1.5f, _animationDuration).SetEase(Ease.OutExpo);
+}
+
 }

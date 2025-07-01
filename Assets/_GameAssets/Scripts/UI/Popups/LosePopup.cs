@@ -28,8 +28,6 @@ public class LosePopup : MonoBehaviour
 
     private void OnTryAgainButtonClicked()
     {
-        DOTween.KillAll();
-        StartCoroutine(LoadSceneAfterDelay());
         TransitionManager.Instance.LoadLevel(Consts.SceneNames.GAME_SCENE);
     }
 
