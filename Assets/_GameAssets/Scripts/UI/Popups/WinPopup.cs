@@ -16,6 +16,9 @@ public class WinPopup : MonoBehaviour
 
     private void OnEnable()
     {
+        BackgroundMusic.Instance.PlayBackgroundMusic(false);
+        AudioManager.Instance.Play(SoundType.WinSound);
+
         _timerText.text = _timerUI.GetFinalTime();
 
         _oneMoreButton.onClick.AddListener(OnOneMoreButtonClicked);
@@ -28,14 +31,7 @@ public class WinPopup : MonoBehaviour
 
     private void OnOneMoreButtonClicked()
     {
-        DOTween.KillAll();
-        StartCoroutine(LoadSceneAfterDelay());
+        AudioManager.Instance.Play(SoundType.TransitionSound);
         TransitionManager.Instance.LoadLevel(Consts.SceneNames.GAME_SCENE);
-    }
-
-    private System.Collections.IEnumerator LoadSceneAfterDelay()
-    {
-        yield return new WaitForEndOfFrame();
-        SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE);
     }
 }
