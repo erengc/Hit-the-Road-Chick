@@ -71,3 +71,11 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/_GameAssets/Scenes/GameScene/LightingData.asset
+Assets/_GameAssets/Scenes/GameScene/LightingData.asset.meta
+Assets/_GameAssets/Scenes/GameScene/LightingData.asset.meta
+Assets/_GameAssets/Scenes/GameScene/Lightmap-7_comp_light.exr
+Assets/_GameAssets/Scenes/GameScene/Lightmap-21_comp_light.exr
+Assets/_GameAssets/Scenes/GameScene/Lightmap-13_comp_light.exr
+Assets/_GameAssets/Scenes/GameScene/Lightmap-0_comp_light.exr
+Assets/_GameAssets/Scenes/GameScene/LightingData.asset.meta
