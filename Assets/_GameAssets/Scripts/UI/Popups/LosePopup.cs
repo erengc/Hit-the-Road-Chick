@@ -1,7 +1,6 @@
 using DG.Tweening;
 using MaskTransitions;
 using TMPro;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,11 +15,19 @@ public class LosePopup : MonoBehaviour
 
     private void OnEnable()
     {
+        // Mouse'u serbest bırak - popup açıldığında
+        EnsureCursorUnlocked();
+        
+        // Audio ve UI setup
         BackgroundMusic.Instance.PlayBackgroundMusic(false);
         AudioManager.Instance.Play(SoundType.LoseSound);
 
         _timerText.text = _timerUI.GetFinalTime();
 
+        // Button listeners
+        _tryAgainButton.onClick.RemoveAllListeners();
+        _mainMenuButton.onClick.RemoveAllListeners();
+        
         _tryAgainButton.onClick.AddListener(OnTryAgainButtonClicked);
 
         _mainMenuButton.onClick.AddListener(() =>
@@ -33,7 +40,36 @@ public class LosePopup : MonoBehaviour
     private void OnTryAgainButtonClicked()
     {
         AudioManager.Instance.Play(SoundType.TransitionSound);
+        
+        // GameManager'a restart sinyali gönder (eğer varsa)
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnGameRestart();
+        }
+        
         TransitionManager.Instance.LoadLevel(Consts.SceneNames.GAME_SCENE);
+    }
+
+    private void EnsureCursorUnlocked()
+    {
+        // Kamera kontrolünü devre dışı bırak
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnPauseMenuOpen();
+        }
+        
+        // Force cursor unlock (güvenlik için)
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        
+        Debug.Log("LosePopup: Cursor unlocked");
+    }
+
+    private void OnDisable()
+    {
+        // Button listener'ları temizle
+        _tryAgainButton.onClick.RemoveAllListeners();
+        _mainMenuButton.onClick.RemoveAllListeners();
     }
 
     private System.Collections.IEnumerator LoadSceneAfterDelay()
@@ -41,4 +77,14 @@ public class LosePopup : MonoBehaviour
         yield return new WaitForEndOfFrame();
         SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE);
     }
+
+    #region Debug Methods
+    
+    [ContextMenu("Test Cursor Unlock")]
+    private void TestCursorUnlock()
+    {
+        EnsureCursorUnlocked();
+    }
+    
+    #endregion
 }

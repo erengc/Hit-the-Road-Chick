@@ -1,13 +1,11 @@
 using System;
 using DG.Tweening;
 using MaskTransitions;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SettingsUI : MonoBehaviour
 {
-
     [Header("References")]
     [SerializeField] private GameObject _settingsPopupObject;
     [SerializeField] private GameObject _blackBackgroundObject;
@@ -29,9 +27,9 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] private float _animationDuration;
 
     private Image _blackBackgroundImage;
-
     private bool _isMusicActive = true;
     private bool _isSoundActive = true;
+    private bool _isSettingsOpen = false;
 
     private void Awake()
     {
@@ -49,6 +47,38 @@ public class SettingsUI : MonoBehaviour
 
         _musicButton.onClick.AddListener(OnMusicButtonClicked);
         _soundButton.onClick.AddListener(OnSoundButtonClicked);
+    }
+
+    private void Update()
+    {
+        // ESC tuşu kontrolü
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("ESC!");
+            HandleEscapeInput();
+        }
+    }
+
+    private void HandleEscapeInput()
+    {
+        // ESC her basıldığında settings'i toggle yap
+        GameState currentState = GameManager.Instance.GetCurrentGameState();
+        Debug.Log($"Current game state: {currentState}, Settings open: {_isSettingsOpen}");
+        
+        if (currentState == GameState.Play || currentState == GameState.Resume)
+        {
+            Debug.Log("Opening settings...");
+            OnSettingsButtonClicked();
+        }
+        else if (currentState == GameState.Pause && _isSettingsOpen)
+        {
+            Debug.Log("Closing settings...");
+            OnResumeButtonClicked();
+        }
+        else
+        {
+            Debug.Log("ESC ignored - wrong state");
+        }
     }
 
     private void OnSoundButtonClicked()
@@ -69,11 +99,14 @@ public class SettingsUI : MonoBehaviour
 
     private void OnSettingsButtonClicked()
     {
+        if (_isSettingsOpen) return; // Çift tıklama önleme
+
         GameManager.Instance.ChangeGameState(GameState.Pause);
         AudioManager.Instance.Play(SoundType.ButtonClickSound);
 
         _blackBackgroundObject.SetActive(true);
         _settingsPopupObject.SetActive(true);
+        _isSettingsOpen = true;
 
         _blackBackgroundImage.DOFade(0.8f, _animationDuration).SetEase(Ease.Linear);
         _settingsPopupObject.transform.DOScale(1.5f, _animationDuration).SetEase(Ease.InOutExpo);
@@ -81,6 +114,8 @@ public class SettingsUI : MonoBehaviour
 
     private void OnResumeButtonClicked()
     {
+        if (!_isSettingsOpen) return; // Çift tıklama önleme
+
         AudioManager.Instance.Play(SoundType.ButtonClickSound);
         _blackBackgroundImage.DOFade(0f, _animationDuration).SetEase(Ease.Linear);
         _settingsPopupObject.transform.DOScale(0f, _animationDuration).SetEase(Ease.OutExpo).OnComplete(() =>
@@ -88,6 +123,23 @@ public class SettingsUI : MonoBehaviour
             GameManager.Instance.ChangeGameState(GameState.Resume);
             _blackBackgroundObject.SetActive(false);
             _settingsPopupObject.SetActive(false);
+            _isSettingsOpen = false;
         });
     }
+
+    #region Debug Methods
+    
+    [ContextMenu("Test Open Settings")]
+    private void TestOpenSettings()
+    {
+        OnSettingsButtonClicked();
+    }
+    
+    [ContextMenu("Test Close Settings")]
+    private void TestCloseSettings()
+    {
+        OnResumeButtonClicked();
+    }
+    
+    #endregion
 }
